@@ -13,7 +13,7 @@ Free desktop app for Windows, macOS and Linux. No Python or anything else to ins
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 ![Platforms](https://img.shields.io/badge/platforms-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
 
-**English** · [Русский](README.ru.md)
+**English** · [Deutsch](README.de.md)
 
 <img src="docs/screenshot.png" width="660" alt="Photo Batch Renamer window: folder, new name, preview of old and new file names">
 
