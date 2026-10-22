@@ -36,7 +36,9 @@ Die App selbst ist auf Englisch, Namen können Sie aber in jeder Sprache eingebe
 - **Führende Nullen (optional).** `001, 002, …`, damit Dateien überall richtig sortiert werden.
 - **Dateitypen bleiben erhalten.** Fotos, Videos und RAW-Dateien (`.cr2`, `.nef`, `.arw`, …) behalten ihre Endung.
 - **Drag & Drop.** Ziehen Sie einen Ordner einfach ins Fenster.
-- **Systemdateien werden übersprungen**, z. B. `Thumbs.db`, `desktop.ini`, `.DS_Store` und versteckte Dateien.
+- **Dateien auswählen.** Jede Datei hat ein Häkchen. Umbenannt werden nur die angehakten, oder Sie wählen mit **All / None / Photos / Videos** per Klick: zuerst die Fotos in `Your Name photo`, dann die Videos in `Your Name video`.
+- **Nur Fotos und Videos.** Angezeigt werden JPEG, PNG, HEIC, WebP, RAW-Dateien von Kameras und alle gängigen Videoformate. Dokumente, Programme, Musik und andere Dateien im Ordner werden ausgeblendet und nie verändert.
+- **Updates in der App.** Mit **Check for updates** wird eine neue Version direkt installiert, ohne manuellen Download oder Neuinstallation.
 - **Überall gleich.** Identisches Fenster unter Windows, macOS und Linux.
 
 ## Download
@@ -97,11 +99,12 @@ Die App erscheint im Anwendungsmenü. Benötigte Systembibliotheken werden autom
 
 1. Klicken Sie auf **Browse…** und wählen Sie den Ordner mit Ihren Fotos (oder ziehen Sie den Ordner ins Fenster).
 2. Geben Sie den neuen Namen ein, z. B. `Your Name`. Der Ordnername wird automatisch vorgeschlagen.
-3. Wählen Sie die Reihenfolge: **by file name** (nach Dateiname, also in der Reihenfolge der Kamera) oder **by date taken** (nach Aufnahmedatum).
-4. Prüfen Sie die Vorschau und klicken Sie auf **Rename**.
+3. Wählen Sie die Reihenfolge: **by file name** (nach Dateiname, also in der Reihenfolge der Kamera), **by date taken** (nach Aufnahmedatum) oder **by type** (erst Fotos, dann Videos).
+4. Entfernen Sie das Häkchen bei Dateien, die nicht umbenannt werden sollen, oder nutzen Sie **All / None / Photos / Videos**.
+5. Prüfen Sie die Vorschau und klicken Sie auf **Rename**. Nur angehakte Dateien werden umbenannt und nummeriert.
 
 > [!IMPORTANT]
-> Die App benennt **alle Dateien** im gewählten Ordner um (Unterordner nicht). Legen Sie dort nur die Fotos ab, die umbenannt werden sollen.
+> Umbenannt werden nur **angehakte Foto- und Videodateien** im gewählten Ordner, Unterordner nicht. Andere Dateien (Dokumente, Programme, Musik …) werden nicht angezeigt und nie verändert.
 
 ## Häufige Fragen
 
@@ -113,6 +116,14 @@ Ja, mit der Schaltfläche **Undo**, solange die App geöffnet ist. Danach sind d
 
 **Woher kommt das „Aufnahmedatum“?**
 Bei JPEG und TIFF aus den EXIF-Daten. Bei anderen Dateien (HEIC, RAW, Videos) wird das Änderungsdatum der Datei verwendet, das Kameras und Kopierprogramme normalerweise beibehalten.
+
+**Welche Dateien werden angezeigt?**
+Fotos: JPEG, PNG, GIF, BMP, TIFF, WebP, HEIC/HEIF, AVIF, JPEG XL und RAW-Dateien von Canon, Nikon, Sony, Fujifilm, Olympus/OM System, Panasonic, Leica, Pentax, Samsung, Sigma, Hasselblad, Phase One sowie DNG.
+Videos: MP4, MOV, AVI, MKV, WMV, WebM, MTS/M2TS, MPG, 3GP, DV, GoPro- und Insta360-Dateien, Blackmagic RAW, RED und MXF.
+
+**Wie funktionieren Updates?**
+Klicken Sie oben rechts auf **Check for updates**. Gibt es eine neue Version, klicken Sie auf **Install**: Die App lädt sie von dieser GitHub-Seite, prüft, ob die Datei vollständig und unverändert ist (SHA-256-Prüfsumme), installiert sie über die aktuelle Version und startet neu. Einstellungen und Verknüpfungen bleiben erhalten. Unter Linux (.deb) werden Sie nach Ihrem Passwort gefragt, wie bei jeder Paketinstallation.
+Beim Start fragt die App GitHub unauffällig nach der neuesten Versionsnummer. Dabei werden keine Daten über Sie oder Ihre Dateien gesendet.
 
 **Warum ist der Download so groß (etwa 50 MB)?**
 Der Installer enthält alles, was die App braucht. So müssen Sie weder Python noch andere Software installieren.

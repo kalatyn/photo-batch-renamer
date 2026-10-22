@@ -72,6 +72,8 @@ jobs:
         with:
           path: dist
           merge-multiple: true
+      - name: Checksums for the in-app updater
+        run: cd dist && sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
       - uses: softprops/action-gh-release@v3
         with:
           files: dist/*

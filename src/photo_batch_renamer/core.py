@@ -6,13 +6,42 @@ import re
 import uuid
 from datetime import datetime
 
-SKIP = {"desktop.ini", "thumbs.db", ".ds_store"}
 EXIF_EXT = {".jpg", ".jpeg", ".tif", ".tiff"}
 # Characters forbidden on Windows; we forbid them everywhere so names stay portable.
 INVALID_CHARS = set('<>:"/\\|?*') | {chr(c) for c in range(32)}
 
+# Only these files are shown and renamed; everything else in the folder is left alone.
+PHOTO_EXT = {
+    # common formats
+    ".jpg", ".jpeg", ".jpe", ".jfif", ".png", ".gif", ".bmp", ".tif", ".tiff", ".webp",
+    ".heic", ".heif", ".hif", ".avif", ".jxl",
+    # camera RAW formats
+    ".dng", ".cr2", ".cr3", ".crw",              # Canon
+    ".nef", ".nrw",                              # Nikon
+    ".arw", ".srf", ".sr2",                      # Sony
+    ".raf",                                      # Fujifilm
+    ".orf", ".ori",                              # Olympus / OM System
+    ".rw2", ".raw", ".rwl",                      # Panasonic, Leica
+    ".pef", ".ptx",                              # Pentax
+    ".srw",                                      # Samsung
+    ".x3f",                                      # Sigma
+    ".3fr", ".fff",                              # Hasselblad
+    ".iiq",                                      # Phase One
+    ".mos", ".mef", ".mrw", ".erf", ".kdc", ".dcr", ".gpr",
+}
+VIDEO_EXT = {
+    ".mp4", ".m4v", ".mov", ".qt", ".avi", ".mkv", ".wmv", ".asf", ".webm", ".flv", ".ogv",
+    ".mts", ".m2ts", ".ts", ".mpg", ".mpeg", ".m2v", ".vob", ".mod", ".tod", ".dv",
+    ".3gp", ".3g2",
+    ".insv", ".360", ".lrv",                     # Insta360, GoPro
+    ".braw", ".r3d", ".mxf", ".crm",             # cinema cameras
+}
+PHOTO = "photo"
+VIDEO = "video"
+
 SORT_NAME = 0
 SORT_DATE = 1
+SORT_TYPE = 2
 
 
 class RenameError(Exception):
@@ -45,17 +74,29 @@ def shot_time(path: str) -> float:
     return os.stat(path).st_mtime
 
 
+def media_kind(name: str) -> str | None:
+    """PHOTO, VIDEO, or None for any other file."""
+    ext = os.path.splitext(name)[1].lower()
+    if ext in PHOTO_EXT:
+        return PHOTO
+    if ext in VIDEO_EXT:
+        return VIDEO
+    return None
+
+
 def list_files(folder: str, sort_mode: int = SORT_NAME) -> list[str]:
-    """Visible files in the folder (no subfolders, hidden or system files)."""
+    """Photo and video files in the folder (no subfolders, hidden or other files)."""
     if not folder or not os.path.isdir(folder):
         return []
     names = [
         e.name
         for e in os.scandir(folder)
-        if e.is_file() and not e.name.startswith(".") and e.name.lower() not in SKIP
+        if e.is_file() and not e.name.startswith(".") and media_kind(e.name)
     ]
     if sort_mode == SORT_DATE:
         names.sort(key=lambda n: (shot_time(os.path.join(folder, n)), natural_key(n)))
+    elif sort_mode == SORT_TYPE:
+        names.sort(key=lambda n: (media_kind(n) != PHOTO, natural_key(n)))
     else:
         names.sort(key=natural_key)
     return names

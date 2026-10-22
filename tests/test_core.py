@@ -112,4 +112,37 @@ def test_failure_rolls_back(tmp_path, monkeypatch):
 def test_every_error_key_has_a_text():
     for key in ("err_empty", "err_chars", "err_exists", "err_os"):
         assert key in STRINGS
-    assert tr("count", n=3) == "Files in folder: 3"
+    assert tr("count", sel=2, n=3, photos=2, videos=1) == "Selected 2 of 3  ·  Photos: 2  ·  Videos: 1"
+
+
+def test_only_photos_and_videos_are_listed(tmp_path):
+    make(tmp_path, "DSC0001.JPG", "IMG_2.heic", "R0003.CR3", "clip.MP4", "GX010004.MOV",
+         "notes.txt", "setup.exe", "list.pdf", "song.mp3", "photo.jpg.part", "README")
+    assert core.list_files(str(tmp_path)) == ["clip.MP4", "DSC0001.JPG", "GX010004.MOV", "IMG_2.heic", "R0003.CR3"]
+
+
+@pytest.mark.parametrize("name,kind", [("a.JPG", core.PHOTO), ("a.nef", core.PHOTO), ("a.DNG", core.PHOTO),
+                                       ("a.mov", core.VIDEO), ("a.MTS", core.VIDEO), ("a.insv", core.VIDEO),
+                                       ("a.txt", None), ("a.exe", None), ("noext", None)])
+def test_media_kind(name, kind):
+    assert core.media_kind(name) == kind
+
+
+def test_photo_and_video_extensions_do_not_overlap():
+    assert not core.PHOTO_EXT & core.VIDEO_EXT
+
+
+def test_type_order_puts_photos_first(tmp_path):
+    make(tmp_path, "a.mp4", "b.jpg", "c.mov", "d.cr2")
+    assert core.list_files(str(tmp_path), core.SORT_TYPE) == ["b.jpg", "d.cr2", "a.mp4", "c.mov"]
+
+
+def test_rename_only_selected_files(tmp_path):
+    make(tmp_path, "a.jpg", "b.mp4", "c.jpg", "d.mp4", "notes.txt")
+    files = core.list_files(str(tmp_path))
+    photos = [f for f in files if core.media_kind(f) == core.PHOTO]
+    core.rename_all(str(tmp_path), core.build_plan(photos, "Trip photo", False))
+    videos = [f for f in core.list_files(str(tmp_path)) if core.media_kind(f) == core.VIDEO]
+    core.rename_all(str(tmp_path), core.build_plan(videos, "Trip video", False))
+    assert sorted(os.listdir(tmp_path)) == ["Trip photo_1.jpg", "Trip photo_2.jpg",
+                                            "Trip video_1.mp4", "Trip video_2.mp4", "notes.txt"]

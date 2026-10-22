@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 (2026-10-22)
+
+- Checkbox for every file: rename only the files you choose
+- Quick selection: All, None, Photos, Videos
+- New order: by type (photos first, then videos) and a Type column
+- Only photo and video files are shown (incl. camera RAW and common video formats); other files are never touched
+- Check for updates and install them from inside the app (downloads are verified with SHA-256)
+
 ## 1.0.1 (2026-10-22)
 
 - Neutral example name in the app and docs ("Your Name")

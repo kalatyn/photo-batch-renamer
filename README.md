@@ -34,7 +34,9 @@ numbered name: `Your Name_1.jpg`, `Your Name_2.jpg`, `Your Name_3.mp4`.
 - **Leading zeros (optional).** `001, 002, …` so files sort correctly everywhere.
 - **Keeps file types.** Photos, videos and RAW files (`.cr2`, `.nef`, `.arw`, …) keep their extension.
 - **Drag and drop.** Drop a folder onto the window.
-- **Skips system files** such as `Thumbs.db`, `desktop.ini`, `.DS_Store` and hidden files.
+- **Pick the files.** Every file has a checkbox. Rename only the ones you check, or use **All / None / Photos / Videos** to select in one click: rename the photos to `Your Name photo`, then the videos to `Your Name video`.
+- **Photos and videos only.** JPEG, PNG, HEIC, WebP, camera RAW files and all common video formats are shown. Documents, programs, music and other files in the folder are hidden and never touched.
+- **Updates inside the app.** Click **Check for updates** and install a new version in place, without downloading or reinstalling anything by hand.
 - **Same app everywhere.** Identical window on Windows, macOS and Linux.
 
 ## Download
@@ -95,11 +97,12 @@ The app appears in your applications menu. Needed system libraries are installed
 
 1. Click **Browse…** and choose the folder with your photos (or drop the folder onto the window).
 2. Type the new name, for example `Your Name`. The folder name is filled in for you.
-3. Choose the order: **by file name** (the order your camera took them) or **by date taken**.
-4. Check the preview and click **Rename**.
+3. Choose the order: **by file name** (the order your camera took them), **by date taken** or **by type** (photos first, then videos).
+4. Uncheck the files you don’t want to rename, or use **All / None / Photos / Videos**.
+5. Check the preview and click **Rename**. Only checked files are renamed and numbered.
 
 > [!IMPORTANT]
-> The app renames **all files** in the chosen folder (not in subfolders). Put only the photos you want to rename into it.
+> Only **checked photo and video files** in the chosen folder are renamed. Subfolders are not included. Other files (documents, programs, music…) are not shown and never touched.
 
 ## FAQ
 
@@ -111,6 +114,14 @@ Yes, with the **Undo** button, until you close the app. After that, the original
 
 **What does “by date taken” use?**
 The capture date from EXIF for JPEG and TIFF files. For other files (HEIC, RAW, videos) it uses the file’s modification date, which cameras and copy tools normally keep.
+
+**Which files does it show?**
+Photos: JPEG, PNG, GIF, BMP, TIFF, WebP, HEIC/HEIF, AVIF, JPEG XL and RAW files from Canon, Nikon, Sony, Fujifilm, Olympus/OM System, Panasonic, Leica, Pentax, Samsung, Sigma, Hasselblad, Phase One and DNG.
+Videos: MP4, MOV, AVI, MKV, WMV, WebM, MTS/M2TS, MPG, 3GP, DV, GoPro and Insta360 files, Blackmagic RAW, RED and MXF.
+
+**How do updates work?**
+Click **Check for updates** in the top right corner. If a new version exists, click **Install**: the app downloads it from this GitHub page, checks that the file is complete and unchanged (SHA-256 checksum), installs it over the current version and restarts. Your settings and shortcuts stay. On Linux (.deb) you are asked for your password, as for any package installation.
+When the app starts, it quietly asks GitHub for the latest version number. Nothing about you or your files is sent.
 
 **Why is the download so large (about 50 MB)?**
 The installer contains everything the app needs, so you don’t have to install Python or other software.
