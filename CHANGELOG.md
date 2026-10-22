@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 (2026-10-22)
+
+- Neutral example name in the app and docs ("Your Name")
+- Build pipeline updated to current GitHub Actions versions
+
 ## 1.0.0 (2026-10-22)
 
 First release.

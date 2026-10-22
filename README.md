@@ -4,7 +4,7 @@
 
 # Photo Batch Renamer
 
-**Rename every photo in a folder in one click: `DSC0001.JPG` → `Mexico 2016_1.jpg`**
+**Rename camera photos from default names to your own: `DSC0001.JPG` → `Your Name_1.jpg`**
 
 Free desktop app for Windows, macOS and Linux. No Python or anything else to install.
 
@@ -22,8 +22,8 @@ Free desktop app for Windows, macOS and Linux. No Python or anything else to ins
 ## Why
 
 You come back from a trip with 500 photos called `DSC0001.JPG`, `DSC0002.JPG`, `IMG_4711.HEIC`…
-Copy them into a folder, open Photo Batch Renamer, type `Mexico 2016` and every file gets a clear,
-numbered name: `Mexico 2016_1.jpg`, `Mexico 2016_2.jpg`, `Mexico 2016_3.mp4`.
+Copy them into a folder, open Photo Batch Renamer, type a name and every file gets a clear,
+numbered name: `Your Name_1.jpg`, `Your Name_2.jpg`, `Your Name_3.mp4`.
 
 ## Features
 
@@ -94,7 +94,7 @@ The app appears in your applications menu. Needed system libraries are installed
 ## How to use
 
 1. Click **Browse…** and choose the folder with your photos (or drop the folder onto the window).
-2. Type the new name, for example `Mexico 2016`. The folder name is filled in for you.
+2. Type the new name, for example `Your Name`. The folder name is filled in for you.
 3. Choose the order: **by file name** (the order your camera took them) or **by date taken**.
 4. Check the preview and click **Rename**.
 

@@ -9,5 +9,5 @@ Maintainer: kalatyn <kalatyn@users.noreply.github.com>
 Homepage: https://github.com/kalatyn/photo-batch-renamer
 Description: Rename all photos in a folder to "Name_1", "Name_2", ...
  Simple desktop app for photographers: pick a folder, type a name
- (for example "Mexico 2016") and every photo gets a clear, numbered name.
+ (for example "Your Name") and every photo gets a clear, numbered name.
  Live preview, sorting by EXIF date taken, undo.

@@ -50,10 +50,10 @@ def test_date_order_prefers_exif(tmp_path):
 
 @pytest.mark.parametrize(
     "pad,total,expected",
-    [(False, 5, "Мексика 2016_3.jpg"), (True, 5, "Мексика 2016_003.jpg"), (True, 1500, "Мексика 2016_0003.jpg")],
+    [(False, 5, "Your Name_3.jpg"), (True, 5, "Your Name_003.jpg"), (True, 1500, "Your Name_0003.jpg")],
 )
 def test_new_name(pad, total, expected):
-    assert core.new_name(" Мексика 2016 ", 3, total, pad, "DSC0003.JPG") == expected
+    assert core.new_name(" Your Name ", 3, total, pad, "DSC0003.JPG") == expected
 
 
 def test_new_name_without_extension():
@@ -61,7 +61,7 @@ def test_new_name_without_extension():
 
 
 @pytest.mark.parametrize("base,err", [("", "err_empty"), ("  ", "err_empty"), ("a/b", "err_chars"),
-                                      ("a:b", "err_chars"), ("trip.", "err_chars"), ("Мексика 2016", None)])
+                                      ("a:b", "err_chars"), ("trip.", "err_chars"), ("Your Name", None)])
 def test_validate(base, err):
     assert core.validate_base(base) == err
 

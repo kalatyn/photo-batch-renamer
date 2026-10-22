@@ -6,7 +6,7 @@ STRINGS = {
     "folder_label": "1. Photo folder:",
     "folder_hint": "Click “Browse...” or drop a folder onto the window",
     "browse": "Browse...",
-    "name_label": "2. New name (for example: Mexico 2016):",
+    "name_label": "2. New name (for example: Your Name):",
     "order": "Order:",
     "sort_name": "by file name (DSC0001, DSC0002...)",
     "sort_date": "by date taken",
