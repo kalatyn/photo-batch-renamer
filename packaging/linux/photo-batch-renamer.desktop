@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Photo Batch Renamer
+GenericName=Photo Renamer
+Comment=Rename all photos in a folder to "Name_1", "Name_2", ...
+Exec=photo-batch-renamer %f
+Icon=photo-batch-renamer
+Terminal=false
+Categories=Graphics;Photography;Utility;
+Keywords=rename;photo;photos;batch;camera;exif;
